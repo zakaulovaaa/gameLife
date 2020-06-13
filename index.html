@@ -5,7 +5,7 @@
     <title>Game of life</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
-    
+
 </head>
 <body>
     <header>
@@ -15,29 +15,29 @@
     </header>
     <div class="settings">
         <div>Ширина поля <input type="number" min="10" max="200" step="1" value="100" id="width" onchange="init()"></div>
-        
+
         <div>Высота поля <input type="number" min="10" max="200" step="1" value="100" id="height" onchange="init()"></div>
 
         <input type="button" id="clear" value="Очистка">
         <input type="button" id="rand" value="Рандомизация">
         <input type="button" id="step" value="Шаг">
-        
+
         <div>Интервал (мсек)
-            <input type="number" min="1" max="2000" step="1" value="30" id="timeout"> 
+            <input type="number" min="1" max="2000" step="1" value="30" id="timeout">
             <input type="button" id="autoplay" value="Плей">
         </div>
 
         <input type="button" id="btnStop" value="Стоп">
         <input type="button" id="savePNG" value="Сохранить в PNG">
         <input type="button" id="saveField" value="Сохранить в файл">
-        <input type="button" id="loadField" value="Загрузить из файла">
-        
+        <input type="file" id="loadField" value="Загрузить из файла">
+
     </div>
-    
+
     <canvas id="back" width="1400" height="1400" ></canvas>
     <canvas id="game" width="1400" height="1400" ></canvas>
     <br>
-    
+
     <hr>
     <!-- <input type="button" id="glider" value="Глайдер">
     <input type="button" id="exploder" value="Эксплодер">
@@ -46,7 +46,7 @@
     <input type="button" id="kek" value="Kek">
     <input type="button" id="lol" value="Lol">
     <input type="button" id="dick" value="Песас"> -->
-    
+
     <script src="index.js" type="application/javascript"></script>
 </body>
 </html>
