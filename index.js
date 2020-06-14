@@ -2,20 +2,17 @@
 var console;
 
 var CELL_SIZE = 7; //размер клетки
-//var cells = [ [], [] ]; //многомерный костыль JS
 var cells = [], buffCells = [];
 var timeout = 30; //задержка для автоплея
 var canvas, game;
 canvas = document.getElementById('back').getContext('2d');
 canvas.translate(0.5, 0.5);
 
-var length = 1; //для писоса
+var length = 1; 
 var isAutoPlay = false
 
 function init() {
     //back-grid
-
-    // canvas = document.getElementById('back').getContext('2d');
 
     canvas.clearRect(0, 0, 1400, 1400)
     // canvas.translate(0.5, 0.5);
@@ -395,21 +392,8 @@ function init() {
 
       };
 
-      // reader.onerror = function() {
-      //   console.log(reader.error);
-      // };
-      //readTextFile(this.files);
 
     }
-
-    //readTextFile("file:///C:/Users/khala/Downloads/example.txt");
-
-    // function forAutoplay() {
-    //     var upd = new Update();
-    //     if ( isAutoPlay ) {
-    //         upd.forAutoplay();
-    //     }
-    // }
 
 
 }
