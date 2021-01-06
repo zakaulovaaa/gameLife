@@ -9,45 +9,95 @@
 </head>
 <body>
     <header>
-        <div class="mainTitle">
-            Игра "ЖИЗНЬ"
-        </div>
+        <div class="mainTitle">Симулятор игры "жизнь"</div>
     </header>
-    <div class="settings">
-        <div>Ширина поля <input type="number" min="10" max="200" step="1" value="100" id="width" onchange="init()"></div>
+    <div class="main_content">
+        <div class="settings">
 
-        <div>Высота поля <input type="number" min="10" max="200" step="1" value="100" id="height" onchange="init()"></div>
+            <div id="btn-open_description"><b>Описание игры</b></div><br><br>
 
-        <input type="button" id="clear" value="Очистка">
-        <input type="button" id="rand" value="Рандомизация">
-        <input type="button" id="step" value="Шаг">
+            Ширина поля
+            <input type="number" min="10" max="200" step="1" value="100" id="width" onchange="init()" class="input_size">
 
-        <div>Интервал (мсек)
-            <input type="number" min="1" max="2000" step="1" value="30" id="timeout">
-            <input type="button" id="autoplay" value="Плей">
+            Высота поля
+            <input type="number" min="10" max="200" step="1" value="100" id="height" onchange="init()" class="input_size">
+
+            Интервал (мсек)
+            <input type="number" min="1" max="2000" step="1" value="30" id="timeout" class="input_size">
+
+
+
+
+            <div class="block_action">
+                <input type="button" id="clear" value="Очистка" class="btn_action">
+                <input type="button" id="step" value="Шаг" class="btn_action">
+                <input type="button" id="savePNG" value="Сохранить в PNG" class="btn_action">
+                <input type="button" id="rand" value="Рандомизация" class="btn_action">
+<!--                <input type="button" id="saveField" value="Сохранить в файл" class="btn_action">-->
+            </div>
+            <input type="button" id="autoplay" value="Плей" class="btn_play btn-main">
+            <input type="button" id="btnStop" value="Стоп" class="btn-main">
+
+
+
+<!--            <input type="file" id="loadField" value="Загрузить из файла">-->
+
         </div>
 
-        <input type="button" id="btnStop" value="Стоп">
-        
-
-    </div>
-    <div class="fs">
-        <div>
-            
-            <input type="button" id="savePNG" value="Сохранить в PNG">
-            <input type="button" id="saveField" value="Сохранить в файл">
-            <input type="file" id="loadField" value="Загрузить из файла">
+        <div class="block_canvas">
+            <canvas id="back" width="1400" height="1400" ></canvas>
+            <canvas id="game" width="1400" height="1400" ></canvas>
         </div>
-        
-        
+
     </div>
 
-    <canvas id="back" width="1400" height="1400" ></canvas>
-    <canvas id="game" width="1400" height="1400" ></canvas>
-    <br>
+    <div class="description_game" id="popup_description_game">
+        <div id="close_popup">
+            <img src="cancel.png" height="24px" width="24px">
+        </div>
+        <h2>Описание игры</h2>
+        <ul>
+            <li>
+                Место действия этой игры — «вселенная» — это размеченная на клетки поверхность или плоскость — безграничная, ограниченная, или замкнутая (в пределе — бесконечная плоскость).
+            </li><br>
+            <li>
+                Каждая клетка на этой поверхности может находиться в двух состояниях: быть «живой» (заполненной) или быть «мёртвой» (пустой). Клетка имеет восемь соседей, окружающих её.
+            </li><br>
+            <li>
+                Распределение живых клеток в начале игры называется первым поколением. Каждое следующее поколение рассчитывается на основе предыдущего по таким правилам:
+                <ul>
+                    <li>
+                        в пустой (мёртвой) клетке, рядом с которой ровно три живые клетки, зарождается жизнь;
+                    </li>
+                    <li>
+                        если у живой клетки есть две или три живые соседки, то эта клетка продолжает жить; в противном случае, если соседей меньше двух или больше трёх, клетка умирает («от одиночества» или «от перенаселённости»)
+                    </li>
+                </ul>
+            </li><br>
+            <li>
+                Игра прекращается, если
+                <ul>
+                    <li>
+                        на поле не останется ни одной «живой» клетки
+                    </li>
+                    <li>
+                        конфигурация на очередном шаге в точности (без сдвигов и поворотов) повторит себя же на одном из более ранних шагов (складывается периодическая конфигурация)
+                    </li>
+                    <li>
+                        при очередном шаге ни одна из клеток не меняет своего состояния (складывается стабильная конфигурация; предыдущее правило, вырожденное до одного шага назад)
+                    </li>
+                </ul>
+            </li><br>
+        </ul>
+        Эти простые правила приводят к огромному разнообразию форм, которые могут возникнуть в игре. <br><br>
+        Игрок не принимает прямого участия в игре, а лишь расставляет или генерирует начальную конфигурацию «живых» клеток, которые затем взаимодействуют согласно правилам уже без его участия (он является наблюдателем).
+    </div>
+    <div class="fon-popup" id="fon-popup">
 
-    <hr>
+    </div>
 
+    <script src="functions.js" type="application/javascript"></script>
     <script src="index.js" type="application/javascript"></script>
+
 </body>
 </html>

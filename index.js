@@ -1,30 +1,55 @@
 'use strict'; //ES5 строгий режим
 var console;
 
+let SETTINGS_WIDTH = 400;
+let MIN_WIDTH_CANVAS = 400;
+let TITLE_SIZE = 90;
+
+
 var CELL_SIZE = 7; //размер клетки
 var cells = [], buffCells = [];
 var timeout = 30; //задержка для автоплея
 var canvas, game;
 canvas = document.getElementById('back').getContext('2d');
+game = document.getElementById('game').getContext('2d');
 canvas.translate(0.5, 0.5);
 
-var length = 1; 
+var length = 1;
 var isAutoPlay = false
 
+if (window.innerWidth - SETTINGS_WIDTH >= MIN_WIDTH_CANVAS) {
+    let width = div(window.innerWidth - SETTINGS_WIDTH, CELL_SIZE);
+    document.getElementById('width').value = width - (1 - width % 2);
+
+    let height = div(window.innerHeight - TITLE_SIZE, CELL_SIZE);
+    document.getElementById('height').value = height - (1 - height % 2);
+
+    canvas.canvas.height = window.innerHeight - TITLE_SIZE + 2;
+    canvas.canvas.width = window.innerWidth - SETTINGS_WIDTH + 2;
+
+    game.canvas.height = window.innerHeight - TITLE_SIZE + 2;
+    game.canvas.width = window.innerWidth - SETTINGS_WIDTH + 2;
+
+}
+
 function init() {
+
+
     //back-grid
+    // console.log(window.innerWidth);
+    // console.log(window.innerHeight);
 
     canvas.clearRect(0, 0, 1400, 1400)
     // canvas.translate(0.5, 0.5);
-    canvas.width =  CELL_SIZE * document.getElementById('width').value;
-    canvas.height =  CELL_SIZE * document.getElementById('height').value;
+    canvas.width = CELL_SIZE * document.getElementById('width').value;
+    canvas.height = CELL_SIZE * document.getElementById('height').value;
 
     //game
-    game = document.getElementById('game').getContext('2d');
+
 
     /* Сетка */
     function Grid() {
-        this.size = { x : 0, y : 0 };
+        this.size = {x: 0, y: 0};
         this.width = canvas.width;
         this.height = canvas.height;
         // canvas.clear()
@@ -47,7 +72,7 @@ function init() {
             }
         };
 
-        var marginGor = (1400 - CELL_SIZE * document.getElementById('width').value) / 2;
+        var marginGor = (1000 - CELL_SIZE * document.getElementById('width').value) / 2;
 
         /* рисуем сетку */
         this.draw = function () {
@@ -81,14 +106,15 @@ function init() {
 
         /* Очистка ячеек */
         this.clear = function () {
-            var marginGor = (1400 - CELL_SIZE * document.getElementById('width').value) / 2
+            var marginGor = (1000 - CELL_SIZE * document.getElementById('width').value) / 2
             game.clearRect(marginGor, 0, canvas.width, canvas.height);
         };
 
         /* Заполнить конкретную ячейку */
         this.fillCell = function (x, y) {
-            var marginGor = (1400 - CELL_SIZE * document.getElementById('width').value) / 2
-            game.fillStyle="rgb(200, 200, 200)";
+            var marginGor = (1000 - CELL_SIZE * document.getElementById('width').value) / 2
+            game.fillStyle = "rgb(150, 170, 150)";
+            // game.fillStyle="#f2c840";
             game.fillRect(x * CELL_SIZE + marginGor, y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
         };
 
@@ -142,7 +168,9 @@ function init() {
                 var upd = new Update();
                 upd.fill();
                 timeout = document.getElementById('timeout').value
-                setTimeout(function () { upd.autoplay(); }, timeout);
+                setTimeout(function () {
+                    upd.autoplay();
+                }, timeout);
             }
         };
 
@@ -204,19 +232,19 @@ function init() {
             if (y === 0 && cells[x][sy - 1] === true) {
                 count += 1
             }
-            if (y === 0 && x !== 0 &&  cells[x - 1][sy - 1] === true) {
+            if (y === 0 && x !== 0 && cells[x - 1][sy - 1] === true) {
                 count += 1
             }
-            if (y === 0 && x !== sx - 1 &&  cells[x + 1][sy - 1] === true) {
+            if (y === 0 && x !== sx - 1 && cells[x + 1][sy - 1] === true) {
                 count += 1
             }
             if (y === sy - 1 && cells[x][0] === true) {
                 count += 1
             }
-            if (y === sy - 1 && x !== 0 &&  cells[x - 1][0] === true) {
+            if (y === sy - 1 && x !== 0 && cells[x - 1][0] === true) {
                 count += 1
             }
-            if (y === sy - 1 && x !== sx - 1 &&  cells[x + 1][0] === true) {
+            if (y === sy - 1 && x !== sx - 1 && cells[x + 1][0] === true) {
                 count += 1
             }
 
@@ -262,7 +290,8 @@ function init() {
 
     }
 
-    var gameGrid = new Grid(), gameUpd = new Update(), clearBtn, randBtn, stepBtn, stopBtn, saveBtn, saveField, loadField, data ;
+    var gameGrid = new Grid(), gameUpd = new Update(), clearBtn, randBtn, stepBtn, stopBtn, saveBtn, saveField,
+        loadField, data;
     gameGrid.draw();
     gameGrid.fill();
     //gameUpd.fillCell(10, 10);
@@ -277,11 +306,15 @@ function init() {
 
     //Кнопка рандомизации
     randBtn = document.getElementById('rand');
-    randBtn.onclick = function () { gameUpd.randomFill(); };
+    randBtn.onclick = function () {
+        gameUpd.randomFill();
+    };
 
     //Кнопка шага
     stepBtn = document.getElementById('step');
-    stepBtn.onclick = function () { gameUpd.fill(); };
+    stepBtn.onclick = function () {
+        gameUpd.fill();
+    };
 
     //Кнопка autoplay
     stepBtn = document.getElementById('autoplay');
@@ -299,21 +332,21 @@ function init() {
     };
 
     function download(filename) {
-      var canvas2 = document.getElementById('game')
-      var lnk = document.createElement('a'), e;
-      lnk.download = filename;
-      lnk.href = canvas2.toDataURL("image/png;base64");
+        var canvas2 = document.getElementById('game')
+        var lnk = document.createElement('a'), e;
+        lnk.download = filename;
+        lnk.href = canvas2.toDataURL("image/png;base64");
 
-      if (document.createEvent) {
-        e = document.createEvent("MouseEvents");
-        e.initMouseEvent("click", true, true, window,
-                         0, 0, 0, 0, 0, false, false, false,
-                         false, 0, null);
+        if (document.createEvent) {
+            e = document.createEvent("MouseEvents");
+            e.initMouseEvent("click", true, true, window,
+                0, 0, 0, 0, 0, false, false, false,
+                false, 0, null);
 
-        lnk.dispatchEvent(e);
-      } else if (lnk.fireEvent) {
-        lnk.fireEvent("onclick");
-      }
+            lnk.dispatchEvent(e);
+        } else if (lnk.fireEvent) {
+            lnk.fireEvent("onclick");
+        }
     }
 
 
@@ -323,79 +356,88 @@ function init() {
     };
 
     function getField() {
-      var ans = ""
-      ans += document.getElementById('height').value + " " + document.getElementById('width').value + "\n";
+        var ans = ""
+        ans += document.getElementById('height').value + " " + document.getElementById('width').value + "\n";
 
-      for (var i = 0; i < document.getElementById('height').value; i += 1) {
-          for (var j = 0; j < document.getElementById('width').value; j += 1) {
-              ans += cells[i][j] === true ? "1 " : "0 ";
-          }
-          ans += "\n";
-      }
+        for (var i = 0; i < document.getElementById('height').value; i += 1) {
+            for (var j = 0; j < document.getElementById('width').value; j += 1) {
+                ans += cells[i][j] === true ? "1 " : "0 ";
+            }
+            ans += "\n";
+        }
 
-      return ans;
+        return ans;
     }
 
-    saveField = document.getElementById('saveField');
-    saveField.onclick = function () {
-      var text = getField();
-      let a = document.createElement("a");
-      let file = new Blob([text], {type: 'application/json'});
-      a.href = URL.createObjectURL(file);
-      a.download = "example.txt";
-      a.click();
-    };
+    // saveField = document.getElementById('saveField');
+    // saveField.onclick = function () {
+    //     var text = getField();
+    //     let a = document.createElement("a");
+    //     let file = new Blob([text], {type: 'application/json'});
+    //     a.href = URL.createObjectURL(file);
+    //     a.download = "example.txt";
+    //     a.click();
+    // };
 
-    loadField = document.getElementById('loadField');
-    loadField.addEventListener("change", handleFiles, false);
+    // loadField = document.getElementById('loadField');
+    // loadField.addEventListener("change", handleFiles, false);
 
     function handleFiles() {
-      var file = this.files[0]; /* now you can work with the file list */
-      let reader = new FileReader();
+        var file = this.files[0]; /* now you can work with the file list */
+        let reader = new FileReader();
 
-      reader.readAsText(file);
-
-
-      var fileLine;
-      reader.onload = function() {
-        fileLine = reader.result;
-        var mass = fileLine.split("\n")
-
-        document.getElementById('height').value = mass[0].split(" ")[0]
-        document.getElementById('width').value = mass[0].split(" ")[1]
-
-        init()
-        var i, j, fill, fillRnd, grid = new Grid(), upd = new Update();
-        //очищаем предыдущий рисунок
-        upd.clear();
+        reader.readAsText(file);
 
 
-        for (var i = 1; i < document.getElementById('height').value; i++) {
-          var massi = mass[i].split(" ")
-          for (var j = 1; j < document.getElementById('width').value; j++) {
-            cells[i][j] = massi[j] === "1" ? true : false
-          }
-        }
+        var fileLine;
+        reader.onload = function () {
+            fileLine = reader.result;
+            var mass = fileLine.split("\n")
 
-        for (i = 0; i < grid.size.x; i += 1) {
-            for (j = 0; j < grid.size.y; j += 1) {
-                fill = cells[i][j];
-                if (fill === true) {
-                    //заполняем новый рисунок
-                    fillRnd = new Update();
-                    fillRnd.fillCell(i, j);
+            document.getElementById('height').value = mass[0].split(" ")[0]
+            document.getElementById('width').value = mass[0].split(" ")[1]
+
+            init()
+            var i, j, fill, fillRnd, grid = new Grid(), upd = new Update();
+            //очищаем предыдущий рисунок
+            upd.clear();
+
+
+            for (var i = 1; i < document.getElementById('height').value; i++) {
+                var massi = mass[i].split(" ")
+                for (var j = 1; j < document.getElementById('width').value; j++) {
+                    cells[i][j] = massi[j] === "1" ? true : false
                 }
             }
-        }
 
-
-
-      };
-
-
+            for (i = 0; i < grid.size.x; i += 1) {
+                for (j = 0; j < grid.size.y; j += 1) {
+                    fill = cells[i][j];
+                    if (fill === true) {
+                        //заполняем новый рисунок
+                        fillRnd = new Update();
+                        fillRnd.fillCell(i, j);
+                    }
+                }
+            }
+        };
     }
-
-
 }
 
 window.onload = init();
+
+document.addEventListener("DOMContentLoaded", () => {
+    let btn_open_description = document.getElementById("btn-open_description");
+    let close_popup = document.getElementById("close_popup");
+    let popup = document.getElementById("popup_description_game");
+    let fon = document.getElementById("fon-popup");
+    btn_open_description.onclick = () => {
+        popup.style.display = "block";
+        fon.style.display = "block";
+    }
+    close_popup.onclick = () => {
+        popup.style.display = "none";
+        fon.style.display = "none";
+    }
+
+})
