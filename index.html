@@ -9,44 +9,48 @@
 </head>
 <body>
     <header>
-        <div class="mainTitle">Симулятор игры "жизнь"</div>
+        <div class="mainTitle" id="main_title">Симулятор игры "жизнь"</div>
     </header>
     <div class="main_content">
-        <div class="settings">
+        <div class="settings" id="block_settings">
 
             <div id="btn-open_description"><b>Описание игры</b></div><br><br>
 
             Ширина поля
-            <input type="number" min="10" max="200" step="1" value="100" id="width" onchange="init()" class="input_size">
+            <input type="number" min="10" max="200" step="1" value="100" id="width" class="input_size">
 
             Высота поля
-            <input type="number" min="10" max="200" step="1" value="100" id="height" onchange="init()" class="input_size">
+            <input type="number" min="10" max="200" step="1" value="100" id="height" class="input_size">
 
             Интервал (мсек)
             <input type="number" min="1" max="2000" step="1" value="30" id="timeout" class="input_size">
 
-
+<!--            Размер ячейки-->
+<!--            <input type="number" min="1" max="2000" step="1" value="7" id="cellSize" class="input_size">-->
 
 
             <div class="block_action">
-                <input type="button" id="clear" value="Очистка" class="btn_action">
-                <input type="button" id="step" value="Шаг" class="btn_action">
-                <input type="button" id="savePNG" value="Сохранить в PNG" class="btn_action">
-                <input type="button" id="rand" value="Рандомизация" class="btn_action">
-<!--                <input type="button" id="saveField" value="Сохранить в файл" class="btn_action">-->
+                <div class="row1">
+                    <input type="button" id="clear" value="Очистка" class="btn_action">
+                    <input type="button" id="step" value="Шаг" class="btn_action">
+                </div>
+                <div class="row1">
+                    <input type="button" id="savePNG" value="Сохранить в PNG" class="btn_action">
+                    <input type="button" id="rand" value="Рандомизация" class="btn_action">
+                </div>
             </div>
             <input type="button" id="autoplay" value="Плей" class="btn_play btn-main">
             <input type="button" id="btnStop" value="Стоп" class="btn-main">
 
-
-
-<!--            <input type="file" id="loadField" value="Загрузить из файла">-->
-
         </div>
 
-        <div class="block_canvas">
+        <div class="block_canvas" id="block_canvas">
             <canvas id="back" width="1400" height="1400" ></canvas>
             <canvas id="game" width="1400" height="1400" ></canvas>
+        </div>
+
+        <div class="block_right">
+
         </div>
 
     </div>
@@ -96,6 +100,7 @@
 
     </div>
 
+    <script src="GameLife.js" type="application/javascript"></script>
     <script src="functions.js" type="application/javascript"></script>
     <script src="index.js" type="application/javascript"></script>
 

@@ -22,18 +22,21 @@ input {
 .mainTitle {
     font-size: 40px;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    padding: 20px 0;
+    /*margin-bottom: 20px;*/
+    /*margin-top: 20px;*/
     height: 50px;
 }
 .settings {
-    width: 400px;
+    min-width: 350px;
+    max-width: 400px;
+
     background-color: #213b32;
     display: flex;
     flex-direction: column;
     /*flex-wrap: wrap;*/
     /*justify-content: space-around;*/
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     color: #ffffff;
     padding: 20px;
 
@@ -44,18 +47,22 @@ input {
     /*flex-wrap: wrap;*/
     /*justify-content: space-around;*/
 }
+
+
 #back {
     /* align: center; */
-    z-index: 0;
+    z-index: 1;
+    /*background-color: white;*/
     position: absolute;
 }
 #game {
     /* align: center; */
-    z-index: 1;
+    z-index: 2;
 }
 
 .main_content {
     display: flex;
+    /*background-color: #213b32;*/
 }
 .input_size {
     margin: 10px 0;
@@ -64,10 +71,17 @@ input {
     border: 0;
 }
 .btn_action {
-    width: 176px;
-    /*border: 0;*/
-    margin: 0;
+    width: 49%;
 }
+
+.block_action {
+    display: flex;
+    flex-direction: column;
+}
+.row1 {
+    align-content: flex-start;
+}
+
 .btn_play {
     background-color: #f2c840;
 }
@@ -76,6 +90,8 @@ input {
     border: 0;
     margin: 10px 0;
 }
+
+
 
 .description_game {
     /*position: relative;*/
@@ -119,6 +135,11 @@ h2 {
 
 #btn-open_description {
     font-size: 20px;
+}
+
+.block_right {
+    background-color: #213b32;
+    flex-grow: 1;
 }
 
 /*для маленьких экранов*/
