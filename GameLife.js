@@ -1,5 +1,69 @@
 class GameLife {
 
+    constructor() {
+        /** Устанавливаем переменные */
+        this.settingsWidth = this.getWidthBlockById("block_settings"); //ширина блока с настройками -- для отступов
+        this.minWidthCanvas = 400;
+        this.titleHeight = this.getHeightBlockById("main_title");
+        this.cellSize = 7; //размер клетки
+        this.canvas = document.getElementById('back').getContext('2d');
+        this.game = document.getElementById('game').getContext('2d');
+        this.canvas.translate(0.5, 0.5);
+        this.isPaint = false;
+        this.isPaintFigure = false;
+
+        this.backCanvas = document.getElementById('back');
+
+        this.inputWidth = document.getElementById('width');
+        this.inputHeight = document.getElementById('height');
+        this.inputTimeout = document.getElementById('timeout');
+
+
+        this.size = {x: this.inputWidth.value, y: this.inputHeight.value};
+
+        this.cells = [];
+        this.buffCells = [];
+        this.usedPaint = [];
+
+        this.isAutoplay = false;
+
+        /** Выполняем основные функции */
+        this.setSizeCanvases();
+
+        this.backCanvas.addEventListener("mousedown", (event) => {
+            if (!this.isPaint) return;
+            for (let i = 0; i < this.size.x; i++) {
+                this.usedPaint[i] = [];
+                for (let j = 0; j < this.size.y; j++) {
+                    this.usedPaint[i][j] = false;
+                }
+            }
+            this.isPaintFigure = true;
+            let x = event.pageX - (this.backCanvas.offsetLeft + this.backCanvas.clientLeft),
+                y = event.pageY - (this.backCanvas.offsetTop +this. backCanvas.clientTop);
+
+            this.changeValueCell(x, y);
+        });
+
+        this.backCanvas.addEventListener("mousemove", (event) => {
+            if (this.isPaintFigure) {
+                let x = event.pageX - (this.backCanvas.offsetLeft + this.backCanvas.clientLeft),
+                    y = event.pageY - (this.backCanvas.offsetTop + this.backCanvas.clientTop);
+                this.changeValueCell(x, y);
+            }
+        });
+
+        this.backCanvas.addEventListener("mouseup", (event) => {
+            if (this.isPaintFigure) {
+                let x = event.pageX - (this.backCanvas.offsetLeft + this.backCanvas.clientLeft),
+                    y = event.pageY - (this.backCanvas.offsetTop +this. backCanvas.clientTop);
+                this.changeValueCell(x, y);
+                this.isPaintFigure = false;
+            }
+        });
+
+    }
+
     getWidthBlockById(id) {
         let block = document.getElementById(id);
         if (block !== null) {
@@ -54,34 +118,6 @@ class GameLife {
             this.game.canvas.height = window.innerHeight;
             this.game.canvas.width = window.innerWidth;
         }
-    }
-
-    constructor() {
-        /** Устанавливаем переменные */
-        this.settingsWidth = this.getWidthBlockById("block_settings"); //ширина блока с настройками -- для отступов
-        this.minWidthCanvas = 400;
-        this.titleHeight = this.getHeightBlockById("main_title");
-        this.cellSize = 7; //размер клетки
-        this.canvas = document.getElementById('back').getContext('2d');
-        this.game = document.getElementById('game').getContext('2d');
-        this.canvas.translate(0.5, 0.5);
-        this.isPaint = false;
-
-        this.inputWidth = document.getElementById('width');
-        this.inputHeight = document.getElementById('height');
-        this.inputTimeout = document.getElementById('timeout');
-
-
-        this.size = {x: this.inputWidth.value, y: this.inputHeight.value};
-
-        this.cells = [];
-        this.buffCells = [];
-
-        this.isAutoplay = false;
-
-        /** Выполняем основные функции */
-        this.setSizeCanvases();
-
     }
 
     newGridFill() {
@@ -149,12 +185,14 @@ class GameLife {
     }
 
     changeValueCell(x, y) {
-
+        let i = div(x, this.cellSize), j = div(y, this.cellSize);
         if (x < 0 || y < 0 || x > this.cellSize * this.inputWidth.value || y > this.cellSize * this.inputHeight.value ||
-            !this.isPaint) {
+            !this.isPaint || this.usedPaint[i][j]) {
             return;
         }
-        let i = div(x, this.cellSize), j = div(y, this.cellSize);
+
+        this.usedPaint[i][j] = true;
+
         if (this.cells[i][j]) {
             this.clearCell(i, j);
         } else {
@@ -261,4 +299,6 @@ class GameLife {
             lnk.fireEvent("onclick");
         }
     }
+
+
 }
