@@ -11,14 +11,12 @@ randBtn.onclick = function () {
 //Кнопка autoplay
 let autoplayBtn = document.getElementById('autoplay');
 autoplayBtn.onclick = function () {
-    game.isAutoplay = true;
+    autoplayBtn.value = (game.isAutoplay ? "Плей" : "Стоп");
+    game.isAutoplay = !game.isAutoplay;
     game.autoplay();
 };
 
-let stopBtn = document.getElementById('btnStop');
-stopBtn.onclick = function () {
-    game.isAutoplay = false;
-};
+
 
 let stepBtn = document.getElementById('step');
 stepBtn.onclick = function () {
