@@ -4,13 +4,14 @@ body {
     padding: 0;
     width: 100vw;
 }
+
 body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    /*background-color: rgb(50, 50, 50);*/
     background-color: #ffffff;
     color: black;
 }
+
 input {
     font-size: 14px;
     font-family: 'Montserrat', sans-serif;
@@ -21,48 +22,37 @@ input {
     outline:none;
 }
 
-
 .mainTitle {
     font-size: 40px;
     text-align: center;
     padding: 20px 0;
-    /*margin-bottom: 20px;*/
-    /*margin-top: 20px;*/
     height: 50px;
 }
+
 .settings {
     min-width: 350px;
     max-width: 400px;
-
     background-color: #213b32;
     display: flex;
     flex-direction: column;
-    /*flex-wrap: wrap;*/
-    /*justify-content: space-around;*/
-    /*margin-bottom: 20px;*/
     color: #ffffff;
-    /*padding: 20px;*/
 
 }
+
 .block_canvas {
     background-color: #213b32;
 }
-
 #back {
-    /* align: center; */
     z-index: 1;
-    /*background-color: white;*/
     position: absolute;
 }
 #game {
-    /* align: center; */
     z-index: 2;
     background-color: #ffffff;
 }
 
 .main_content {
     display: flex;
-
 }
 .input_size {
     margin: 10px 15px;
@@ -105,61 +95,28 @@ input {
     border: 0;
     margin: 8px 15px;
 }
-
-
-.description_game {
-    /*position: relative;*/
-    z-index: 1;
-    /*margin: auto 0;*/
-    border-radius: 10px;
-
-    background-color: #213b32;
-    display: none;
-    width: 600px;
-    height: 400px;
-    overflow: scroll;
-    color: white;
-    padding: 30px;
-    opacity: 1;
-    pointer-events: auto;
-
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
+a:link,
+a:visited,
+a:active
+{
+    text-decoration: none;
+    color: #ffffff;
 }
-.fon-popup {
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
+
 h2 {
     text-align: center;
 }
 
-#btn-open_description:hover {
+#btn-open_description a:hover  {
     color: #f2c840;
 }
 
-#btn-open_description {
+#btn-open_description a {
     font-size: 25px;
     font-weight: 400;
     cursor: pointer;
 }
-#close_popup img {
-    cursor: pointer;
-}
 
-.block_right {
-    background-color: #213b32;
-    flex-grow: 1;
-}
 .btn-main,
 .btn_action {
     background-color: #ffffff;

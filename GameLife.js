@@ -101,7 +101,6 @@ class GameLife {
             this.game.canvas.width = window.innerWidth - this.settingsWidth; //width * this.cellSize + 1;
 
         } else {
-            /** TODO: Написать правила для маленьких экранов */
             this.cellSize = document.getElementById("cellSize").value;
 
             /** Установили количество ячеек */
@@ -130,6 +129,7 @@ class GameLife {
             }
         }
     }
+
     gridDraw() {
         this.canvas.beginPath();
         let widthCanvas = this.inputWidth.value * this.cellSize;
@@ -257,7 +257,6 @@ class GameLife {
 
         this.fillGrid();
     }
-
 
     autoplay() {
         if (this.isAutoplay) {

@@ -72,21 +72,3 @@ backCanvas.addEventListener('click', (event) => {
 }, false);
 
 
-
-
-
-/** Для работы попапа с описанием игры */
-document.addEventListener("DOMContentLoaded", () => {
-    let btn_open_description = document.getElementById("btn-open_description");
-    let close_popup = document.getElementById("close_popup");
-    let popup = document.getElementById("popup_description_game");
-    let fon = document.getElementById("fon-popup");
-    btn_open_description.onclick = () => {
-        popup.style.display = "block";
-        fon.style.display = "block";
-    }
-    close_popup.onclick = () => {
-        popup.style.display = "none";
-        fon.style.display = "none";
-    }
-});
