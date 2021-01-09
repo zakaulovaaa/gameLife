@@ -51,14 +51,27 @@ heightGrid.onchange = () => {
     game.initGame();
 }
 
-// let cellSize = document.getElementById("cellSize");
-// cellSize.onchange = () => {
-//     game.isAutoplay = false;
-//     game.cellSize = cellSize.value;
-//     game.clearGrid();
-//     game.initGame();
-// }
+let cellSize = document.getElementById("cellSize");
+cellSize.onchange = () => {
+    game.isAutoplay = false;
 
+    game.setSizeCanvases();
+    game.clearGrid();
+    game.initGame();
+}
+
+let btnPaint = document.getElementById("btnPaint");
+btnPaint.onclick = () => {
+    btnPaint.value = (game.isPaint ? "Рисовать" : "Прекратить рисование");
+    game.isPaint = !game.isPaint;
+}
+
+let backCanvas = document.getElementById('back');
+backCanvas.addEventListener('click', (event) => {
+    let x = event.pageX - (backCanvas.offsetLeft + backCanvas.clientLeft),
+        y = event.pageY - (backCanvas.offsetTop + backCanvas.clientTop);
+    game.changeValueCell(x, y);
+}, false);
 
 
 

@@ -19,13 +19,15 @@ class GameLife {
     setSizeCanvases() {
         //если блок с настройками и канвас влезают в один скрин
         if (window.innerWidth - this.settingsWidth >= this.minWidthCanvas) {
+            this.cellSize= document.getElementById("cellSize").value;
+
             /** Установили количество ячеек */
             let width = div(window.innerWidth - this.settingsWidth, this.cellSize);
-            width = width - 1 + width % 2;
+            // width = width - 1 + width % 2;
             this.inputWidth.value = width;
 
             let height = div(window.innerHeight - this.titleHeight, this.cellSize);
-            height = height - 1 + height % 2;
+            // height = height - 1 + height % 2;
             this.inputHeight.value = height;
 
             /** установили новый размер канвасов */
@@ -52,10 +54,12 @@ class GameLife {
         this.canvas = document.getElementById('back').getContext('2d');
         this.game = document.getElementById('game').getContext('2d');
         this.canvas.translate(0.5, 0.5);
+        this.isPaint = false;
 
         this.inputWidth = document.getElementById('width');
         this.inputHeight = document.getElementById('height');
         this.inputTimeout = document.getElementById('timeout');
+
 
         this.size = {x: this.inputWidth.value, y: this.inputHeight.value};
 
@@ -69,7 +73,7 @@ class GameLife {
 
     }
 
-    gridFill() {
+    newGridFill() {
         for (let i = 0; i < this.size.x; i++) {
             this.cells[i] = [];
             this.buffCells[i] = [];
@@ -106,17 +110,20 @@ class GameLife {
         this.canvas.fillRect(0, this.inputHeight.value * this.cellSize, 10000, 10000);
 
         this.canvas.stroke();
-
-
     }
 
     clearGrid() {
         this.game.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
+    clearCell(x, y) {
+        this.game.fillStyle = "white";
+        this.game.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize);
+    }
+
     fillCell(x, y) {
         this.game.fillStyle = "rgb(150, 170, 150)";
-        this.game.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize + 1, this.cellSize + 1);
+        this.game.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize);
     }
 
     fillGrid() {
@@ -130,11 +137,27 @@ class GameLife {
         }
     }
 
+    changeValueCell(x, y) {
+
+        if (x < 0 || y < 0 || x > this.cellSize * this.inputWidth.value || y > this.cellSize * this.inputHeight.value ||
+            !this.isPaint) {
+            return;
+        }
+        let i = div(x, this.cellSize), j = div(y, this.cellSize);
+        if (this.cells[i][j]) {
+            this.clearCell(i, j);
+        } else {
+            this.fillCell(i, j);
+        }
+        this.cells[i][j] = !this.cells[i][j];
+
+    }
+
     randomFill() {
         /** Заполняем матрицу */
         for (let i = 0; i < this.size.x; i++) {
             for (let j = 0; j < this.size.y; j++) {
-                let fill = Math.random() <= 0.5;
+                let fill = (Math.random() < 0.5);
                 this.cells[i][j] = Boolean(fill);
             }
         }
@@ -190,7 +213,6 @@ class GameLife {
     autoplay() {
         if (this.isAutoplay) {
             this.updateCells();
-
             setTimeout(() => {
                 this.autoplay();
             }, this.inputTimeout.value);
@@ -207,7 +229,7 @@ class GameLife {
 
         this.size = {x: this.inputWidth.value, y: this.inputHeight.value};
 
-        this.gridFill();
+        this.newGridFill();
         this.gridDraw();
     }
 

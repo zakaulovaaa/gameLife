@@ -25,9 +25,8 @@
             Интервал (мсек)
             <input type="number" min="1" max="2000" step="1" value="30" id="timeout" class="input_size">
 
-<!--            Размер ячейки-->
-<!--            <input type="number" min="1" max="2000" step="1" value="7" id="cellSize" class="input_size">-->
-
+            Размер ячейки
+            <input type="number" min="1" max="100" step="1" value="7" id="cellSize" class="input_size">
 
             <div class="block_action">
                 <div class="row1">
@@ -39,6 +38,8 @@
                     <input type="button" id="rand" value="Рандомизация" class="btn_action">
                 </div>
             </div>
+
+            <input type="button" id="btnPaint" value="Рисовать" class="btn-main">
             <input type="button" id="autoplay" value="Плей" class="btn_play btn-main">
             <input type="button" id="btnStop" value="Стоп" class="btn-main">
 
@@ -48,11 +49,6 @@
             <canvas id="back" width="1400" height="1400" ></canvas>
             <canvas id="game" width="1400" height="1400" ></canvas>
         </div>
-
-        <div class="block_right">
-
-        </div>
-
     </div>
 
     <div class="description_game" id="popup_description_game">

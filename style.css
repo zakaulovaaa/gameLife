@@ -48,6 +48,9 @@ input {
     /*justify-content: space-around;*/
 }
 
+.block_canvas {
+    background-color: #213b32;
+}
 
 #back {
     /* align: center; */
@@ -58,6 +61,7 @@ input {
 #game {
     /* align: center; */
     z-index: 2;
+    background-color: #ffffff;
 }
 
 .main_content {
