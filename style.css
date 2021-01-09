@@ -98,7 +98,7 @@ input {
 }
 
 .btn_play {
-    background-color: #f2c840;
+    background-color: #f2c840 !important;
 }
 .btn-main {
     border-radius: 10px;
@@ -160,6 +160,10 @@ h2 {
 .block_right {
     background-color: #213b32;
     flex-grow: 1;
+}
+.btn-main,
+.btn_action {
+    background-color: #ffffff;
 }
 
 /*для маленьких экранов*/
