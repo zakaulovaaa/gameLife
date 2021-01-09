@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eab3b888-11f6-4c81-b771-938587a8e32e" name="Default Changelist" comment="fix">
+    <list default="true" id="eab3b888-11f6-4c81-b771-938587a8e32e" name="Default Changelist" comment="Добавляет возможность рисовать на поле">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameLife.js" beforeDir="false" afterPath="$PROJECT_DIR$/GameLife.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +46,16 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/gameLife/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,7 +66,7 @@
       <updated>1609951985930</updated>
       <workItem from="1609951987883" duration="29555000" />
       <workItem from="1610176450302" duration="2475000" />
-      <workItem from="1610180816881" duration="1067000" />
+      <workItem from="1610180816881" duration="4161000" />
     </task>
     <task id="LOCAL-00001" summary="add style">
       <created>1609961081624</created>
@@ -73,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610041837128</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Добавляет возможность рисовать на поле">
+      <created>1610182023456</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610182023456</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +110,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add style" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="Добавляет возможность рисовать на поле" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавляет возможность рисовать на поле" />
   </component>
 </project>

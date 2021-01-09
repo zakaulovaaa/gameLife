@@ -2,6 +2,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    width: 100vw;
 }
 body {
     font-family: 'Montserrat', sans-serif;
@@ -38,16 +39,9 @@ input {
     /*justify-content: space-around;*/
     /*margin-bottom: 20px;*/
     color: #ffffff;
-    padding: 20px;
+    /*padding: 20px;*/
 
 }
-.fs {
-    margin-bottom: 20px;
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
-    /*justify-content: space-around;*/
-}
-
 .block_canvas {
     background-color: #213b32;
 }
@@ -69,30 +63,45 @@ input {
     /*background-color: #213b32;*/
 }
 .input_size {
-    margin: 10px 0;
-    padding: 0 10px;
+    margin: 10px 15px;
+    padding: 0 15px;
     border-radius: 10px;
     border: 0;
 }
+.name_input {
+    margin: 0 15px;
+}
+
+#btn-open_description {
+    margin: 15px;
+}
+
 .btn_action {
     width: 49%;
+    border: 0;
+    margin: 2px 0;
+    border-radius: 10px;
 }
 
 .block_action {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 .row1 {
-    align-content: flex-start;
+    display: flex;
+    margin: 0 15px;
+    justify-content: space-between;
 }
 
 .btn_play {
     background-color: #f2c840;
 }
 .btn-main {
-    border-radius: 15px;
+    border-radius: 10px;
     border: 0;
-    margin: 10px 0;
+    margin: 8px 15px;
+
 }
 
 
@@ -147,6 +156,18 @@ h2 {
 }
 
 /*для маленьких экранов*/
-@media (max-width: 600px) {
-    
+@media (max-width: 1000px) {
+    .main_content {
+        flex-direction: column;
+    }
+    .settings {
+        width: 100vw;
+        max-width: 100vw;
+    }
+    .btn_action,
+    .input_size,
+    .btn-main {
+        height: 50px;
+        font-size: 24px;
+    }
 }

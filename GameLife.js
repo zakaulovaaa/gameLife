@@ -17,31 +17,42 @@ class GameLife {
     }
 
     setSizeCanvases() {
+        this.cellSize = document.getElementById("cellSize").value;
+        let width, height;
+
         //если блок с настройками и канвас влезают в один скрин
         if (window.innerWidth - this.settingsWidth >= this.minWidthCanvas) {
-            this.cellSize= document.getElementById("cellSize").value;
-
             /** Установили количество ячеек */
-            let width = div(window.innerWidth - this.settingsWidth, this.cellSize);
-            // width = width - 1 + width % 2;
+            width = div(window.innerWidth - this.settingsWidth, this.cellSize);
             this.inputWidth.value = width;
 
-            let height = div(window.innerHeight - this.titleHeight, this.cellSize);
-            // height = height - 1 + height % 2;
+            height = div(window.innerHeight - this.titleHeight, this.cellSize);
             this.inputHeight.value = height;
 
             /** установили новый размер канвасов */
             this.canvas.canvas.height = window.innerHeight - this.titleHeight;
-                // height * this.cellSize + 1;
             this.canvas.canvas.width = window.innerWidth - this.settingsWidth; // width * this.cellSize + 1;
 
             this.game.canvas.height = window.innerHeight - this.titleHeight;
-            //height * this.cellSize + 1;
             this.game.canvas.width = window.innerWidth - this.settingsWidth; //width * this.cellSize + 1;
 
         } else {
             /** TODO: Написать правила для маленьких экранов */
+            this.cellSize = document.getElementById("cellSize").value;
 
+            /** Установили количество ячеек */
+            width = div(window.innerWidth, this.cellSize);
+            this.inputWidth.value = width;
+
+            height = div(window.innerHeight, this.cellSize);
+            this.inputHeight.value = height;
+
+            /** установили новый размер канвасов */
+            this.canvas.canvas.height = window.innerHeight;
+            this.canvas.canvas.width = window.innerWidth;
+
+            this.game.canvas.height = window.innerHeight;
+            this.game.canvas.width = window.innerWidth;
         }
     }
 

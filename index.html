@@ -14,18 +14,18 @@
     <div class="main_content">
         <div class="settings" id="block_settings">
 
-            <div id="btn-open_description"><b>Описание игры</b></div><br><br>
+            <div id="btn-open_description"><b>Описание игры</b></div><br>
 
-            Ширина поля
+            <p class="name_input">Ширина поля</p>
             <input type="number" min="10" max="200" step="1" value="100" id="width" class="input_size">
 
-            Высота поля
+            <p class="name_input">Высота поля</p>
             <input type="number" min="10" max="200" step="1" value="100" id="height" class="input_size">
 
-            Интервал (мсек)
+            <p class="name_input">Интервал (мсек)</p>
             <input type="number" min="1" max="2000" step="1" value="30" id="timeout" class="input_size">
 
-            Размер ячейки
+            <p class="name_input">Размер ячейки</p>
             <input type="number" min="1" max="100" step="1" value="7" id="cellSize" class="input_size">
 
             <div class="block_action">
@@ -46,8 +46,8 @@
         </div>
 
         <div class="block_canvas" id="block_canvas">
-            <canvas id="back" width="1400" height="1400" ></canvas>
-            <canvas id="game" width="1400" height="1400" ></canvas>
+            <canvas id="back" width="100" height="1400" ></canvas>
+            <canvas id="game" width="100" height="1400" ></canvas>
         </div>
     </div>
 
