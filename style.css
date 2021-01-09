@@ -6,6 +6,7 @@ body {
 }
 body {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
     /*background-color: rgb(50, 50, 50);*/
     background-color: #ffffff;
     color: black;
@@ -13,6 +14,7 @@ body {
 input {
     font-size: 14px;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
     /*background-color: rgb(60, 60, 60);*/
     color: black;
     height: 35px;
@@ -60,7 +62,7 @@ input {
 
 .main_content {
     display: flex;
-    /*background-color: #213b32;*/
+
 }
 .input_size {
     margin: 10px 15px;
@@ -87,6 +89,7 @@ input {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+
 }
 .row1 {
     display: flex;
@@ -103,7 +106,6 @@ input {
     margin: 8px 15px;
 
 }
-
 
 
 .description_game {
@@ -147,7 +149,12 @@ h2 {
 }
 
 #btn-open_description {
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: 400;
+    cursor: pointer;
+}
+#close_popup img {
+    cursor: pointer;
 }
 
 .block_right {
@@ -167,7 +174,21 @@ h2 {
     .btn_action,
     .input_size,
     .btn-main {
-        height: 50px;
-        font-size: 24px;
+        height: 90px;
+        font-size: 32px;
+
+    }
+    #btn-open_description {
+        margin-top: 40px;
+        font-size: 42px;
+    }
+
+    .block_action {
+        margin: 20px 0;
+    }
+
+    body {
+        font-weight: 400;
+        font-size: 32px;
     }
 }
